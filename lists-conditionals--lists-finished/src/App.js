@@ -77,7 +77,6 @@ class App extends Component {
     // };
 
     let persons = null;
-    kkkkkk;
     if (this.state.showPersons) {
       persons = (
         <div>
