@@ -67,6 +67,10 @@ class App extends Component {
   };
 
   render() {
+
+    const btnClass = [classes.Button]
+
+    //  removed for implementation of CSS Modules
     // const style = {
     //   backgroundColor: "green",
     //   color: "white",
@@ -79,6 +83,8 @@ class App extends Component {
     //     color: "black",
     //   },
     // };
+
+
 
     let persons = null;
     if (this.state.showPersons) {
@@ -115,6 +121,11 @@ class App extends Component {
 
     //  let colorClasses = ["red", "bold"].join(" ");
 
+
+
+    // Added for implemeting CSS Modules
+    btnClass.push(classes.Red)
+
     const colorClasses = [];
     if (this.state.persons.length <= 2) {
       colorClasses.push(classes.red);
@@ -149,17 +160,31 @@ class App extends Component {
       // </div>
 
       // This is for implementation of CSS Modules
+      // removed below lines for implementation of CSS Modules array feature
+      // <div className={classes.App}>
+      //   <h1>Hi, I'm a React App</h1>
+      //   <p className={colorClasses.join(" ")}>This is really working!</p>
+      //   <button
+      //     className={classes.Button}
+      //     alt={this.state.showPersons}
+      //     onClick={this.togglePersonsHandler}
+      //   >
+      //     Toggle Persons
+      //   </button>
+      //   {persons}
+      // </div>
 
+      //   implementation of CSS Modules usind array stored in const btnClass
       <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
         <p className={colorClasses.join(" ")}>This is really working!</p>
         <button
-          className={classes.Button}
+          className={btnClass.join(" ")}
           alt={this.state.showPersons}
           onClick={this.togglePersonsHandler}
         >
           Toggle Persons
-        </button>
+      </button>
         {persons}
       </div>
     );
