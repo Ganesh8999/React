@@ -1,24 +1,27 @@
 import React, { Component } from "react";
-import "./App.css";
+
+// import from "./App.css"; // removed for implementation of CSS Modules
+import classes from "./App.css";
 import Person from "./Person/Person";
 // removed for implementation of Styled components
 //import Radium, { StyleRoot } from "radium";
 import Radium from "radium";
-import styled from "styled-components";
 
-const StyledButton = styled.button`
-  background-color: ${(props) => (props.alt ? "red" : "green")};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
+// removed after implemeting CSS Modules
+// import styled from "styled-components";
+// const StyledButton = styled.button`
+//   background-color: ${(props) => (props.alt ? "red" : "green")};
+//   color: white;
+//   font: inherit;
+//   border: 1px solid blue;
+//   padding: 8px;
+//   cursor: pointer;
 
-  &:hover {
-    background-color: ${(props) => (props.alt ? "salmon" : "lightgreen3")};
-    color: black;
-  }
-`;
+//   &:hover {
+//     background-color: ${(props) => (props.alt ? "salmon" : "lightgreen3")};
+//     color: black;
+//   }
+// `;
 
 class App extends Component {
   state = {
@@ -35,6 +38,7 @@ class App extends Component {
     const personIndex = this.state.persons.findIndex((p) => {
       return p.id === id;
     });
+
 
     const person = {
       ...this.state.persons[personIndex],
@@ -113,10 +117,10 @@ class App extends Component {
 
     const colorClasses = [];
     if (this.state.persons.length <= 2) {
-      colorClasses.push("red");
+      colorClasses.push(classes.red);
     }
     if (this.state.persons.length <= 1) {
-      colorClasses.push("bold");
+      colorClasses.push(classes.bold);
     }
 
     return (
@@ -131,15 +135,31 @@ class App extends Component {
       //   </div>
       // </StyleRoot>
 
-      <div className="App">
+      // removed below lines for implementation of CSS Modules
+      // <div className="App">
+      //   <h1>Hi, I'm a React App</h1>
+      //   <p className={colorClasses.join(" ")}>This is really working!</p>
+      //   <StyledButton
+      //     alt={this.state.showPersons}
+      //     onClick={this.togglePersonsHandler}
+      //   >
+      //     Toggle Persons
+      //   </StyledButton>
+      //   {persons}
+      // </div>
+
+      // This is for implementation of CSS Modules
+
+      <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
         <p className={colorClasses.join(" ")}>This is really working!</p>
-        <StyledButton
+        <button
+          className={classes.Button}
           alt={this.state.showPersons}
           onClick={this.togglePersonsHandler}
         >
           Toggle Persons
-        </StyledButton>
+        </button>
         {persons}
       </div>
     );
