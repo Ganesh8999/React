@@ -71,7 +71,9 @@ class App extends Component {
 
       //   implementation of CSS Modules usind array stored in const btnClass
       <div className={classes.App}>
-        <Cockpit showPersons={this.state.showPersons}
+        <Cockpit
+          title={this.props.appTitle}
+          showPersons={this.state.showPersons}
           persons={this.state.persons}
           click={this.togglePersonsHandler} />
         {persons}
