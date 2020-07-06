@@ -13,12 +13,30 @@ const cockpit = (props) => {
 
     }, 1000);
 
-  }, [props.persons]) // [props.persons] this added because whenever person changed then we want useEffect behaviour 
+
+    return () => {
+      console.log("Cockpit.js cleanup work in useEffect");
+
+    }
+
+  }, []) // [props.persons] this added because whenever person changed then we want useEffect behaviour 
 
   // if we write just empty array [] then useEffect will only run first time because their is no any dependency to run useEffect
 
   // we can use multiple useEffect 
 
+
+
+  useEffect(() => {
+    console.log("Cockpit.js useEffect(2) called!!");
+
+
+    return () => {
+      console.log("Cockpit.js cleanup work in useEffect 2");
+
+    }
+
+  })
 
   const assignedClasses = [];
   let btnClass = '';
