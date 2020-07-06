@@ -7,6 +7,8 @@ const cockpit = (props) => {
   useEffect(() => {
     console.log("Cockpit.js useEffect() called!!");
 
+    // example for cleanup work with useEffect
+    // const timer = setTimeout(() => {
     setTimeout(() => {
 
       alert('person changed!!');
@@ -15,6 +17,9 @@ const cockpit = (props) => {
 
 
     return () => {
+
+      // part of  example for cleanup work with useEffect
+      //  clearTimeout(timer);
       console.log("Cockpit.js cleanup work in useEffect");
 
     }
