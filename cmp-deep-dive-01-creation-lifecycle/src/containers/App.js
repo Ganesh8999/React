@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import WithClass from "../hoc/WithClass"
+
 
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
@@ -93,10 +95,9 @@ class App extends Component {
     }
 
     return (
-      // removed for for rendering adjacent JSX  elements
-      // <div className={classes.App}>
-      // <Auxi>
-      <Fragment>
+
+
+      <WithClass classes={classes.App}>
 
         <button onClick={() => { this.setState({ showCockpit: false }) }}> Remove Cockpit</button>
         {this.state.showCockpit ? (
@@ -108,7 +109,31 @@ class App extends Component {
           />) : null
         }
         {persons}
-      </Fragment>
+      </WithClass>
+
+
+
+
+
+
+
+
+      // removed for for rendering adjacent JSX  elements
+      // <div className={classes.App}>
+      // <Auxi>
+      // <Fragment>
+
+      //   <button onClick={() => { this.setState({ showCockpit: false }) }}> Remove Cockpit</button>
+      //   {this.state.showCockpit ? (
+      //     <Cockpit
+      //       title={this.props.appTitle}
+      //       showPersons={this.state.showPersons}
+      //       personsLength={this.state.persons.length}
+      //       clicked={this.togglePersonsHandler}
+      //     />) : null
+      //   }
+      //   {persons}
+      // </Fragment>
       // </Auxi>
       //   </div>
 
