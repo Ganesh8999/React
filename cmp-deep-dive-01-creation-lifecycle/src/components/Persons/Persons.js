@@ -27,7 +27,9 @@ class Persons extends Component {
     if (
       nextProps.persons !== this.props.persons ||
       nextProps.changed !== this.props.changed ||
-      nextProps.clicked !== this.props.clicked) {
+      nextProps.clicked !== this.props.clicked ||
+      nextProps.isAuthenticated !== this.porps.isAuthenticated
+    ) {
 
       return true;
     } else {
@@ -58,7 +60,6 @@ class Persons extends Component {
     return this.props.persons.map((person, index) => {
       return (
         <Person
-
           click={() => this.props.clicked(index)}
           name={person.name}
           age={person.age}

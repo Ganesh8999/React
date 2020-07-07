@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import WithClass from "../hoc/WithClass"
 import withClassHOC from "../hoc/withClassHOC"
-
+import AuthContext from "../context/auth-context"
 
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
@@ -126,12 +126,16 @@ class App extends Component {
 
         <button onClick={() => { this.setState({ showCockpit: false }) }}> Remove Cockpit</button>
         {this.state.showCockpit ? (
-          <Cockpit
-            title={this.props.appTitle}
-            showPersons={this.state.showPersons}
-            personsLength={this.state.persons.length}
-            clicked={this.togglePersonsHandler}
-          />) : null
+
+          <AuthContext.Provider value={{ authenticated: this.state.authenticated, login: this.loginHandler }}>
+            <Cockpit
+              title={this.props.appTitle}
+              showPersons={this.state.showPersons}
+              personsLength={this.state.persons.length}
+              clicked={this.togglePersonsHandler}
+            />
+          </AuthContext.Provider>
+        ) : null
         }
         {persons}
       </Auxi>
