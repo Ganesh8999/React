@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import WithClass from "../hoc/WithClass"
+import withClassHOC from "../hoc/withClassHOC"
 
 
 import classes from './App.css';
@@ -97,7 +98,24 @@ class App extends Component {
     return (
 
 
-      <WithClass classes={classes.App}>
+      // first way of implementing HOC
+      // <WithClass classes={classes.App}>
+
+      //   <button onClick={() => { this.setState({ showCockpit: false }) }}> Remove Cockpit</button>
+      //   {this.state.showCockpit ? (
+      //     <Cockpit
+      //       title={this.props.appTitle}
+      //       showPersons={this.state.showPersons}
+      //       personsLength={this.state.persons.length}
+      //       clicked={this.togglePersonsHandler}
+      //     />) : null
+      //   }
+      //   {persons}
+      // </WithClass>
+
+
+      // Another way implementing HOC
+      <Auxi>
 
         <button onClick={() => { this.setState({ showCockpit: false }) }}> Remove Cockpit</button>
         {this.state.showCockpit ? (
@@ -109,7 +127,8 @@ class App extends Component {
           />) : null
         }
         {persons}
-      </WithClass>
+      </Auxi>
+
 
 
 
@@ -142,4 +161,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withClassHOC(App, classes.App);
