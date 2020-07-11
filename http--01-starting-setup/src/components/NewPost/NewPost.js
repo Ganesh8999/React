@@ -17,7 +17,7 @@ class NewPost extends Component {
             author: this.state.content,
         };
 
-        axios.post('https://jsonplaceholder.typicode.com/posts', postData).then(response => {
+        axios.post('/posts', postData).then(response => {
             console.log(response);
         })
 
@@ -33,8 +33,8 @@ class NewPost extends Component {
                 <textarea rows="4" value={this.state.content} onChange={(event) => this.setState({ content: event.target.value })} />
                 <label>Author</label>
                 <select value={this.state.author} onChange={(event) => this.setState({ author: event.target.value })}>
-                    <option value="Max">Ganesh Singh</option>
-                    <option value="Manu">Divya</option>
+                    <option value="Ganesh Singh">Ganesh Singh</option>
+                    <option value="Divya">Divya</option>
                 </select>
                 <button onClick={this.postPostHandler}>Add Post</button>
             </div>
