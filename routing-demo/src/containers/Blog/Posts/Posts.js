@@ -5,16 +5,11 @@ import './Posts.css';
 import { Route } from "react-router-dom";
 import FullPost from "./../FullPost/FullPost";
 
-
 class Posts extends Component {
-
-
     state = {
 
         posts: []
     }
-
-
     componentDidMount() {
 
         console.log(this.props);
@@ -32,39 +27,30 @@ class Posts extends Component {
             })
 
             this.setState({ posts: updatedPosts });
-
-
-
         }).catch(error => {
             // console.log(error);
             // this.setState({ error: true })
         })
     }
-
-
-
-
     postSelectedHandler = (id) => {
 
         // this.setState({ selectedPostId: id });
 
         // acces urls by programmatically
-        // this.props.history.push({ pathname: '/' + id });
-        this.props.history.push('/' + id);
+        // this.props.history.push({ pathname: '/posts/' + id });
+        this.props.history.push("/posts/" + id);
 
 
     }
 
     render() {
-
-
         let posts = <p style={{ textAlign: 'center' }}> Something went wrong while fetching posts !! try again </p>
 
         if (!this.state.error) {
 
 
             posts = this.state.posts.map(post => {
-                return (//<Link to={'/' + post.id} key={post.id}> // we can call url by programmatically
+                return (//<Link to={'/posts/' + post.id} key={post.id}> // we can call url by programmatically
                     <Post
                         key={post.id}
                         title={post.title}
@@ -77,11 +63,11 @@ class Posts extends Component {
 
         return (
             <div>
-                <Route path={this.props.match.url + "/:id"} exact component={FullPost} />
 
                 <section className="Posts">
                     {posts}
                 </section>
+                <Route path={this.props.match.url + '/:id'} exact component={FullPost} />
 
             </div>
         )

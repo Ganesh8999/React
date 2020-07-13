@@ -6,7 +6,9 @@ class FullPost extends Component {
 
     state = {
         loadedPost: null
+
     }
+
 
 
     componentDidMount() {
@@ -14,7 +16,7 @@ class FullPost extends Component {
         console.log(this.props.id);
         if (this.props.match.params.id) {
 
-            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
+            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.id)) {
 
                 axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.match.params.id).then(postResponse => {
 
@@ -27,9 +29,7 @@ class FullPost extends Component {
 
         }
 
-
     }
-
 
     deletePostHandler = () => {
 

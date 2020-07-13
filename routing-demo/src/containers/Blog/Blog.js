@@ -20,7 +20,7 @@ class Blog extends Component {
                     <nav>
                         <ul>
                             <li><NavLink
-                                to="/"
+                                to="/posts/"
                                 exact
                                 activeClassName="link-Active"
                                 activeStyle={{
@@ -40,8 +40,8 @@ class Blog extends Component {
                 <Route path="/" render={() => <h1>Home2</h1>} /> */}
 
                 <Switch>
-                    <Route path="/" exact component={Posts} />
                     <Route path="/new-post" component={NewPost} />
+                    <Route path="/posts" component={Posts} />
                 </Switch>
             </div>
         );
