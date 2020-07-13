@@ -7,7 +7,7 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import axios from "../../axios-orders";
 import Spinner from "../../components/UI/Spinner/Spinner";
-import WithErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
+// import WithErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
 
@@ -24,16 +24,29 @@ class BurgerBuilder extends Component {
     //     this.state = {...}
     // }
     state = {
-        ingredients: {
-            salad: 0,
-            bacon: 0,
-            cheese: 0,
-            meat: 0
-        },
+        // ingredients: {
+        //     salad: 0,
+        //     bacon: 0,
+        //     cheese: 0,
+        //     meat: 0
+        // },
+        ingredients: null,
         totalPrice: 4,
         purchasable: false,
         purchasing: false,
-        loading: false
+        loading: false,
+        error: false
+    }
+
+    componentDidMount() {
+
+        axios.get('https://react-burger-project-2231f.firebaseio.com/ingredients.json').then(response => {
+
+
+            this.setState({ ingredients: response.data })
+        }).catch(error => {
+            this.setState({ error: true });
+        })
     }
 
     updatePurchaseState(ingredients) {
@@ -116,11 +129,7 @@ class BurgerBuilder extends Component {
             this.setState({ loading: false, purchasing: false })
         });
 
-
     }
-
-
-
 
     render() {
         const disabledInfo = {
@@ -131,17 +140,33 @@ class BurgerBuilder extends Component {
         }
         // {salad: true, meat: false, ...}
 
-        let orderSummary = <OrderSummary
-            ingredients={this.state.ingredients}
-            price={this.state.totalPrice}
-            purchaseCancelled={this.purchaseCancelHandler}
-            purchaseContinued={this.purchaseContinueHandler} />;
+        let orderSummary = null;
+        let burger = this.state.error ? <p>Ingredients can't be loaded please try again !! </p> : <Spinner />
+
+        if (this.state.ingredients) {
+
+            burger = (<Auxi>  <Burger ingredients={this.state.ingredients} />
+                <BuildControls
+                    ingredientAdded={this.addIngredientHandler}
+                    ingredientRemoved={this.removeIngredientHandler}
+                    disabled={disabledInfo}
+                    purchasable={this.state.purchasable}
+                    ordered={this.purchaseHandler}
+                    price={this.state.totalPrice} /> </Auxi>)
+
+
+            orderSummary = <OrderSummary
+                ingredients={this.state.ingredients}
+                price={this.state.totalPrice}
+                purchaseCancelled={this.purchaseCancelHandler}
+                purchaseContinued={this.purchaseContinueHandler} />;
+        }
 
         if (this.state.loading) {
-
             orderSummary = <Spinner />
-
         }
+
+
 
         return (
             <Auxi>
@@ -149,16 +174,11 @@ class BurgerBuilder extends Component {
 
                     {orderSummary}
                 </Modal>
-                <Burger ingredients={this.state.ingredients} />
-                <BuildControls
-                    ingredientAdded={this.addIngredientHandler}
-                    ingredientRemoved={this.removeIngredientHandler}
-                    disabled={disabledInfo}
-                    purchasable={this.state.purchasable}
-                    ordered={this.purchaseHandler}
-                    price={this.state.totalPrice} />
+                {burger}
             </Auxi>
         );
+
+
     }
 }
 
