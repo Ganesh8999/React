@@ -15,6 +15,7 @@ class Posts extends Component {
 
     componentDidMount() {
 
+        console.log(this.props);
         // axios.get('https://jsonplaceholder.typicode.com/posts').then(responseData => {
         axios.get('/posts').then(responseData => {
             //  console.log(responseData);
