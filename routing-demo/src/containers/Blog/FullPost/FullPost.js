@@ -9,13 +9,14 @@ class FullPost extends Component {
     }
 
 
-    componentDidUpdate() {
+    componentDidMount() {
 
-        if (this.props.id) {
+        console.log(this.props.id);
+        if (this.props.match.params.id) {
 
             if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
 
-                axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id).then(postResponse => {
+                axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.match.params.id).then(postResponse => {
 
                     // console.log(postResponse.data);
 
@@ -32,7 +33,7 @@ class FullPost extends Component {
 
     deletePostHandler = () => {
 
-        axios.delete('/posts/' + this.props.id).then(response => {
+        axios.delete('/posts/' + this.props.match.id).then(response => {
             console.log(response);
         })
 
