@@ -45,7 +45,11 @@ class Posts extends Component {
 
     postSelectedHandler = (id) => {
 
-        this.setState({ selectedPostId: id });
+        // this.setState({ selectedPostId: id });
+
+        // acces urls by programmatically
+        // this.props.history.push({ pathname: '/' + id });
+        this.props.history.push('/' + id);
 
 
     }
@@ -59,14 +63,14 @@ class Posts extends Component {
 
 
             posts = this.state.posts.map(post => {
-                return <Link to={'/' + post.id} key={post.id}>
+                return (//<Link to={'/' + post.id} key={post.id}> // we can call url by programmatically
                     <Post
-
+                        key={post.id}
                         title={post.title}
                         author={post.author}
                         clicked={() => this.postSelectedHandler(post.id)}
-                    />
-                </Link>
+                    />)
+                // </Link>
             })
         }
 
