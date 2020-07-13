@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Link } from "react-router-dom";
+// import { Route, Link } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 
 // Removed bcz implemented in axios.js
 // import axios from "axios";
@@ -17,12 +18,19 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><Link to="/" >Home</Link></li>
-                            <li><Link to={{
+                            <li><NavLink
+                                to="/"
+                                exact
+                                activeClassName="link-Active"
+                                activeStyle={{
+                                    color: '#fa923f',
+                                    textDecoration: 'underline'
+                                }} >Home</NavLink></li>
+                            <li><NavLink to={{
                                 pathname: "/new-post",
                                 hash: '#submit',
                                 search: '?quick-Submit=true'
-                            }} >New Post</Link></li>
+                            }} >New Post</NavLink></li>
 
                         </ul>
                     </nav>
