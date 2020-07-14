@@ -19,7 +19,7 @@ class App extends Component {
           </nav>
           <Route path="/" component={Welcome} exact />
           <Route path="/user" component={User} />
-          <Route path="/posts" component={Posts} />
+          <Route path="/posts" render={() => <Suspense fallback={<div>Loading...</div>}><Posts /></Suspense>} />
         </React.Fragment>
       </BrowserRouter>
     );
