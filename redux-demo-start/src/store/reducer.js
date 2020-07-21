@@ -36,9 +36,20 @@ const reducer = (state = initialState, action) => {
             }
         case "DELETE_RESULT":
 
+            // One way
+            // const id = 2;
+            // const newArray = [...state.result];
+            // newArray.splice(id, 1);
+            // return {
+            //     ...state,
+            //     result: newArray
+            // }
+
+            // Alternative way
+            const updatedArray = state.result.filter(resultItem => resultItem.id !== action.resultElementId)
             return {
                 ...state,
-                result: state.result
+                result: updatedArray
             }
 
         default:
