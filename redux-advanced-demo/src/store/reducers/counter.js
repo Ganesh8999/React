@@ -1,4 +1,4 @@
-import * as actionTypes from "../../store/actions/action";
+import * as actionTypes from "../actions/actionTypes";
 
 
 
