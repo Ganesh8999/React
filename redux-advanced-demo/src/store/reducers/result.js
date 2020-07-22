@@ -17,6 +17,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 result: state.result.concat({ id: new Date(), value: action.result })
+                // here we can write data transforming logic
+                //   result: state.result.concat({ id: new Date(), value: action.result * 10  })
             }
         case actionTypes.DELETE_RESULT:
 
