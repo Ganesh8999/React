@@ -8,30 +8,21 @@ const initialState = {
     result: []
 }
 
+const deleteResult = (state, action) => {
+
+    const updatedArray = state.result.filter(resultItem => resultItem.id !== action.resultElementId)
+    return updateObject(...state, { result: updatedArray })
+
+
+}
 
 const reducer = (state = initialState, action) => {
 
 
     switch (action.type) {
 
-        case actionTypes.STORE_RESULT:
-            return updateObject(...state, { result: state.result.concat({ id: new Date(), value: action.result }) });
-        // here we can write data transforming logic
-        //   result: state.result.concat({ id: new Date(), value: action.result * 10  }
-        case actionTypes.DELETE_RESULT:
-
-            // One way
-            // const id = 2;
-            // const newArray = [...state.result];
-            // newArray.splice(id, 1);
-            // return {
-            //     ...state,
-            //     result: newArray
-            // }
-
-            // Alternative way
-            const updatedArray = state.result.filter(resultItem => resultItem.id !== action.resultElementId)
-            return updateObject(...state, { result: updatedArray })
+        case actionTypes.STORE_RESULT: return updateObject(...state, { result: state.result.concat({ id: new Date(), value: action.result }) });
+        case actionTypes.DELETE_RESULT: return deleteResult(state, action);
         default:
             break;
 
