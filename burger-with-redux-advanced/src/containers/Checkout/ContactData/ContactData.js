@@ -127,15 +127,6 @@ class ContactData extends Component {
 
         }
 
-        // console.log("formData" + formData);
-        axios.post('https://react-burger-project-2231f.firebaseio.com/orders.json', order)
-            .then(response => {
-                this.setState({ loading: false });
-                this.props.history.push("/");
-            })
-            .catch(error => {
-                this.setState({ loading: false });
-            });
     }
 
 

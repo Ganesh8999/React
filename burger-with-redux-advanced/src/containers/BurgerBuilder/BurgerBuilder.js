@@ -96,6 +96,7 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
 
 
+    console.log(state.error);
 
     return {
 

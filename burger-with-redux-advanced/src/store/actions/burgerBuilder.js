@@ -24,7 +24,7 @@ export const setIngredients = (ingredients) => {
     return {
 
         type: actionTypes.SET_INGREDIENTS,
-        ingredientName: ingredients
+        ingredients: ingredients
     }
 }
 
