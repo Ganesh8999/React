@@ -2,14 +2,10 @@ import * as actionType from "../actions/actionTypes";
 
 const initialState = {
 
-    ingredients: {
-        salad: 0,
-        meat: 0,
-        cheese: 0,
-        bacon: 0
-    },
+    ingredients: null,
     totalPrice: 4,
-    purchasable: false
+    purchasable: false,
+    error: false
 }
 
 
@@ -51,6 +47,11 @@ const reducer = (state = initialState, action) => {
                 purchasable: true
 
             };
+
+        case actionType.SET_INGREDIENTS:
+            return {
+
+            }
 
         default:
             return state;
