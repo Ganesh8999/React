@@ -21,10 +21,19 @@ export const purchaseBurgerFailed = (error) => {
     }
 }
 
+export const purchaseBurgerStart = () => {
 
-export const purchaseBurgerStart = (orderData) => {
+    return {
+        type: actionTypes.PURCHASE_BURGER_START
+    }
+}
+
+export const purchaseBurger = (orderData) => {
 
     return dispatch => {
+
+        dispatch(this.purchaseBurgerStart());
+
         axios.post('https://react-burger-project-2231f.firebaseio.com/orders.json', orderData)
             .then(response => {
 
