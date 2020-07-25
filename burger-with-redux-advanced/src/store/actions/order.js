@@ -32,7 +32,7 @@ export const purchaseBurger = (orderData) => {
 
     return dispatch => {
 
-        dispatch(this.purchaseBurgerStart());
+        dispatch(purchaseBurgerStart());
 
         axios.post('https://react-burger-project-2231f.firebaseio.com/orders.json', orderData)
             .then(response => {
