@@ -1,5 +1,5 @@
 import * as actionTypes from "../actions/actionTypes";
-
+import { updateObject } from "../utility/utility";
 
 const initialState = {
     orders: [],
@@ -50,7 +50,24 @@ const reducer = (state = initialState, action) => {
                 loading: true
             }
 
+        case actionTypes.FETCH_ORDERS_START:
+            return {
+                ...state,
+                loading: true
+            }
 
+        case actionTypes.FETCH_ORDERS_SUCCESS:
+            return {
+                ...state,
+                orders: action.orders,
+                loading: false
+            }
+
+        case actionTypes.FETCH_ORDERS_FAILED:
+            return {
+                ...state,
+                loading: false
+            }
 
 
         default:
