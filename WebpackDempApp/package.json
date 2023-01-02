@@ -9,7 +9,7 @@
   "author": "Ganesh Singh",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^4.44.0",
+    "webpack": "^5.75.0",
     "webpack-dev-server": "^3.11.0"
   }
 }
